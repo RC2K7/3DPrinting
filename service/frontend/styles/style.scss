@@ -1,0 +1,9 @@
+@import "variables";
+@import "partials/nav";
+@import "partials/footer";
+@import "placeholders";
+@import "mixins";
+
+body {
+    padding: 3px 40px;
+}

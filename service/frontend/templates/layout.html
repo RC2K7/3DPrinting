@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% if title %}{{ title }}{% else %}Innovation Lab{% endif %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="author" type="text/plain" href="/humans.txt">
+        <link rel="stylesheet" href="/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/dist/css/font-awesome.css">
+        <link rel="stylesheet" href="/dist/css/style.css">
+        {% block styles %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <!-- Navbar Header Content -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">Innovation Lab</div>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    <!-- Left Side Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('content.index') }}">Home</a></li>
+                        <li><a href="{{ url_for('content.info') }}">Info</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">3D Printing<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('3dprint.request') }}">Submit Request</a></li>
+                                <li><a href="{{ url_for('3dprint.view') }}">View Submissions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Right Side Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if is_logged_in() %}
+                            {% if is_maintainer() %}
+                                <li>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Control Panel
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        {% if is_admin() %}
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="{{ url_for('manage.access') }}">Manage User Access</a></li>
+                                        {% endif %}
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{ url_for('manage.prints') }}">Manage Prints</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                        <li>
+                            {% if not is_logged_in() %}
+                                <a href="{{ url_for('account.login') }}">Login</a>
+                            {% else %}
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{ get_sid() }}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url_for('account.edit_profile') }}">Edit Profile</a></li>
+                                    <li role="seperator" class="divider"></li>
+                                    <li><a href="{{ url_for('account.logout')}}">Logout</a></li>
+                                </ul>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div> <!--/#navbar-->
+            </div> <!--/.container-fluid-->
+        </nav>
+
+        {% block content %}{% endblock %}
+        
+        <footer>
+            <p class="text-center">Copyright &copy; 2016-{{ year }} Ruben Castaneda</p>
+        </footer>
+        <script src="/dist/js/jquery.js"></script>
+        <script src="/dist/js/bootstrap.js"></script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% from 'macros.html' import form_field %}
+
+{% extends 'page.html' %}
+
+{% macro with_errors(field) %}
+    <div class="field">
+    {% if field.errors %}
+        {% set css_class = 'has_error ' + kwargs.pop('class', '') %}
+        {{ field(class=css_class, **kwargs) }}
+        <ul class="errors">{% for error in field.errors %}<li>{{ error|e }}</li>{% endfor %}</ul>
+    {% else %}
+        {{ field(**kwargs) }}
+    {% endif %}
+    </div>
+{% endmacro %}
+
+{% block content %}
+    <h1>3D-Print Request</h1>
+        <form class="form form-horizontal" role="form">
+            {{ form.hidden_tag() }}
+
+            {% for f in form %}
+                {% if not loop.first and not loop.last %}
+                    {{ form_field(form, f) }}
+                {% endif %}
+            {% endfor %}
+            {{ form_field(form, form.submit) }}
+
+            <!-- <div class="form-group">
+                {% for f in form %}
+                    {% if f.type == 'Print_Entry' %}
+                        <div class="forßm-horizontal">
+                            {{ wtf.form_field(f) }}
+                        </div>
+                    {% else %}
+                        {{ wtf.form_field(f) }}
+                    {% endif %}
+                {% endfor %}
+            </div> -->
+        </form>
+{% endblock %}

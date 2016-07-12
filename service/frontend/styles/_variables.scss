@@ -1,0 +1,25 @@
+@import "lib/neat/neat";
+
+$max-width: em(800);
+$breakpoint: em(900);
+
+// Breakpoints
+$mobile: new-breakpoint(max-width $breakpoint 4);
+$full: new-breakpoint(min-width $breakpoint 12);
+
+// Colors
+$primary: #9e9e9e;
+$accent: #03a9f4;
+$font-color: #fff;
+
+// Nav Variables
+$nav-background-color: #1565c0;
+$nav-foreground-color: #fff;
+$nav-hover-color: #1976d2;
+
+// Font Sizes
+$tiny: 12px;
+$small: 14px;
+$normal: 16px;
+$large: 18px;
+$huge: 36px;

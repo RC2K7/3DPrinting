@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>404 - Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style type="text/css">
+    body {
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 16px;
+        color: #444;
+        padding: 0 10px
+    }
+    h1 {
+        line-height: 1.2
+    }
+    a:link, a:visited {
+        color: #004B6B;
+    }
+    span {
+        background: #eee;
+        font-family: monospace;
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+</style>
+<body>
+    <h1>Page Not Found</h1>
+    <p>
+        Whoops! We don't have anything at
+        <span>
+            {{ request.path }}
+        </span>
+    </p>
+    <br>
+    <p>
+        <a href="javascript: history.go(-1)">Back to Previous Page</a>
+    </p>
+</body>
+</html>

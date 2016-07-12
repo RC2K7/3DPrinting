@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Innovation Lab</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="author" type="text/plain" href="/humans.txt">
+        <link rel="stylesheet" href="public/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="public/dist/css/font-awesome.css">
+        <link rel="stylesheet" href="public/dist/css/style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <!-- Navbar Header Content -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">Innovation Lab</div>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    <!-- Left Side Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" class="nav-item">Home</a></li>
+                        <li><a href="#" class="nav-item">3D Printing</a></li>
+                    </ul>
+
+                    <!-- Right Side Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <!--{% if not is_logged_in() %}-->
+
+                                <!--<a href="{{ url_for('content.login') }}">Login</a>-->
+
+                            <!-- {% else %} -->
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Edit Account</a></li>
+                                    <li><a href="#">View Submissions</a></li>
+                                    <li role="seperator" class="divider"></li>
+                                    <li><a href="{{ url_for('content.logout')}}">Logout</a></li>
+                                </ul>
+
+                            <!--{% endif %}-->
+                        </li>
+                    </ul>
+                </div> <!--/#navbar-->
+            </div> <!--/.container-fluid-->
+        </nav>
+
+        <div class="site-wrapper">
+
+            <div class="site-wrapper-inner">
+
+                <div class="cover-container">
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="text-center">Copyright &copy; 2016-2016 Ruben Castaneda</p>
+        </footer>
+        <script src="public/dist/js/jquery.js"></script>
+        <script src="public/dist/js/bootstrap.js"></script>
+    </body>
+</html>
