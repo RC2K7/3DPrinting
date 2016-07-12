@@ -17,26 +17,17 @@
 
 {% block content %}
     <h1>3D-Print Request</h1>
-        <form class="form form-horizontal" role="form">
-            {{ form.hidden_tag() }}
+        <form>
 
-            {% for f in form %}
-                {% if not loop.first and not loop.last %}
-                    {{ form_field(form, f) }}
-                {% endif %}
-            {% endfor %}
-            {{ form_field(form, form.submit) }}
-
-            <!-- <div class="form-group">
-                {% for f in form %}
-                    {% if f.type == 'Print_Entry' %}
-                        <div class="forßm-horizontal">
-                            {{ wtf.form_field(f) }}
-                        </div>
-                    {% else %}
-                        {{ wtf.form_field(f) }}
+            <div class="form-group">
+                {{ form.csrf_token }}
+                {% for field in form %}
+                    {% if not loop.first and not loop.last %}
+                        {{ field.label }}
+                        {{ with_errors(field) }}
                     {% endif %}
                 {% endfor %}
-            </div> -->
+                {{ form.submit }}
+            </div>
         </form>
 {% endblock %}
