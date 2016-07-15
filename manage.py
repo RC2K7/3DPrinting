@@ -17,15 +17,28 @@ def create():
 
 @MigrateCommand.command
 def drop():
+    "Drops All Database Tables"
     if prompt_bool('Are you sure you want to drop all tables', default=False):
         db.drop_all()
 
 @MigrateCommand.command
 def populate():
-    user = models.users.Users()
+    "Populates Database Tables With Default Entries"
 
+    guest_role = models.users.Roles("guest")
+    maintainer_role = models.users.Roles("maintainer")
+    admin_role = models.users.Roles("admin")
+    master_role = models.users.Roles("master")
+
+    db.session.add(guest_role)
+    db.session.add(maintainer_role)
+    db.session.add(admin_role)
+    db.session.add(master_role)
+    db.session.commit()
+
+    user = models.users.Users()
     user.sid = "004398952"
-    user.role = 3
+    user.role_id = 3
     user.name = 'Ruben Castaneda'
     user.email = 'rubennc1994@gmail.com'
 

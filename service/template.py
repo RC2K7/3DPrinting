@@ -15,15 +15,15 @@ class TemplateFunctions:
 
     @staticmethod
     def is_maintainer():
-        return session['user'].role >= 1
+        return session['user'].role_id >= 1
 
     @staticmethod
     def is_admin():
-        return session['user'].role >= 2
+        return session['user'].role_id >= 2
 
     @staticmethod
     def is_master():
-        return session['user'].role >= 3
+        return session['user'].role_id >= 3
 
     @staticmethod
     def get_name():

@@ -17,6 +17,9 @@ def index():
 
 @blueprint.route('/prints')
 def prints():
+    if not session['user'].role >= 1:
+        return render_template('errors/403.html')
+
     return render_template('manage/prints.html')
     pass
 
