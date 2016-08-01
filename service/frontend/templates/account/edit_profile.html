@@ -1,7 +1,7 @@
 {% extends 'page.html' %}
 
 {% macro with_errors(field) %}
-    <div class="field">
+    <div class="form-group">
     {% if field.errors %}
         {% set css_class = 'has_error ' + kwargs.pop('class', '') %}
         {{ field(class=css_class, **kwargs) }}
@@ -13,7 +13,8 @@
 {% endmacro %}
 
 {% block content %}
-    <form>
+    <!-- Edit Profile Form -->
+    <form action="{{ url_for('account.edit_profile') }}" method="POST">
         <div class="form-group">
         {{ form.csrf_token }}
         {% for field in form %}

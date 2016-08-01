@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, flash
 from ..forms.prints import Print_Submission
+from ..models.prints import Print
 
 blueprint = Blueprint('3dprint', __name__, url_prefix='/account/3dprint')
 
@@ -11,19 +12,16 @@ def required_login():
 
 @blueprint.route('/request', methods=['GET', 'POST'])
 def request():
-    # if request.method == 'POST':
-    #     file = request.files.get('file')
-    #     if not file:
-    #         flash('Fill All Marked Fields')
-    #     else:
-    #         try:
-    #             filename = prints.save(request.files['file'])
-    #         except UploadNotAllowed:
-    #             flash('Upload Not Allowed')
-    #         else:
-    #             flash('Completed Uploading... {}'.format(filename))
-    #     return redirect(url_for('content.index'))
     form = Print_Submission()
+
+    if form.validate_on_submit():
+        flash("Validated", "alert")
+    else:
+        flash("Failed", "alert")
+
+    if len(form.prints) == 0:
+        form.prints = [Print()]
+
     return render_template('3dprint/request.html', form=form)
 
 @blueprint.route('/view')

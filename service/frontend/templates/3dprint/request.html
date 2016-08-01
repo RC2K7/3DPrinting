@@ -17,17 +17,35 @@
 
 {% block content %}
     <h1>3D-Print Request</h1>
-        <form>
 
-            <div class="form-group">
-                {{ form.csrf_token }}
-                {% for field in form %}
-                    {% if not loop.first and not loop.last %}
-                        {{ field.label }}
-                        {{ with_errors(field) }}
-                    {% endif %}
-                {% endfor %}
-                {{ form.submit }}
+    <div class="req_form">
+        <form action="{{ url_for('3dprint.request') }}" method="POST">
+            {{ form.csrf_token }}
+            <div data-toggle="fieldset" id="print-fieldset">
+                <button class="btn btn-default" type="button" data-toggle="fieldset-add-row" data-target="#print-fieldset">Add Another File</button>
+
+                <table class="table table-compact">
+                    <tr>
+                        <th>File Upload</th>
+                        <th>Quantity</th>
+                        <th>Filament</th>
+                        <th></th>
+                    </tr>
+                    {% for print in form.prints %}
+                        <tr data-toggle="fieldset-entry" class="form-group">
+                            <td>{{ print.file }}</td>
+                            <td>{{ print.quantity(class="form-control") }}</td>
+                            <td>{{ print.filament(class="form-control") }}</td>
+                            <td><button class="btn btn-default" type="button" data-toggle="fieldset-remove-row" id="prints-{{loop.index0}}-remove">-</button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
+            {{ form.submit(class="btn btn-default") }}
         </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/dist/js/print.js"></script>
 {% endblock %}
